@@ -14,11 +14,15 @@ searchBtn.addEventListener("click", function(){
 countryInfo.innerHTML = "";
  
 const url = `https://restcountries.com/v3.1/name/${search}`;
-spinner.classList.remove(" d-none")
+setTimeout(() => spinner.classList.remove("d-none"), 1500);
+
 fetch(url)
 .then((res) => res.json())
 .then((data) => showData(data))
-.finaly(() => searchInput.value === "")
+.finaly(() => {
+    searchInput.value === "";
+    spinner.classList.add("d-none");
+})
 });
 
 function showData(countryArray){
